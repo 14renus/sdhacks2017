@@ -32,6 +32,7 @@ body {
 #contact input[type="email"],
 #contact input[type="tel"],
 #contact input[type="url"],
+#contact input[type="number"],
 #contact textarea,
 #contact button[type="submit"] {
   font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
@@ -78,6 +79,15 @@ fieldset {
   padding: 10px;
 }
 
+#contact input[type="number"],
+#contact textarea {
+  width: auto;
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+}
+
 #contact input[type="text"]:hover,
 #contact input[type="email"]:hover,
 #contact input[type="tel"]:hover,
@@ -102,6 +112,7 @@ fieldset {
   background: #dd6c2a;
   color: #FFF;
   margin: 0 0 5px;
+  margin-top: 10px;
   padding: 10px;
   font-size: 15px;
 }
@@ -117,9 +128,6 @@ fieldset {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-.copyright {
-  text-align: center;
-}
 
 #contact input:focus,
 #contact textarea:focus {
@@ -127,7 +135,7 @@ fieldset {
   border: 1px solid #aaa;
 }
 
-::-webkit-input-placeholder {
+/*::-webkit-input-placeholder {
   color: #888;
 }
 
@@ -141,4 +149,4 @@ fieldset {
 
 :-ms-input-placeholder {
   color: #888;
-}
+}*/
