@@ -2,7 +2,7 @@
 <html ng-app="myApp" >
 <head>
 <title>Form</title>
-<link rel="stylesheet" href="../css/form.css">
+<link rel="stylesheet" href="{{ url_for('static',filename='form.css') }}">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 <body>
@@ -11,8 +11,6 @@
 <div class="container" ng-controller="patientCtrl">  
   <form id="contact" name="form">
     <h3>Basic Information</h3>
-    {{test}}
-    {{form.$valid}}
     <fieldset>
       <h4> Height: </h4> 
       <input placeholder="ft"  type="number" tabindex="1" required autofocus ng-model="patient.height.ft">
@@ -34,7 +32,7 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="../js/form.js"></script>
+<script src="{{ url_for('static',filename='form.js') }}"></script>
 
 </body>
 </html>
