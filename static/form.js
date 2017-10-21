@@ -5,20 +5,42 @@ app.config(function($interpolateProvider) {
     $interpolateProvider.endSymbol('%}');
 });
 
-app.controller("patientCtrl", ['$scope', function($scope) {
+app.controller("patientCtrl", ['$scope', '$http', function($scope, $http) {
     $scope.patient = {
-    	height: {ft:"", in:""},
-    	weight: "",
-    	gender: ""
+        height: {ft:"", in:""},
+        weight: "",
+        gender: ""
+    };
+
+    var root = "http://127.0.0.1:5000/";
+    $scope.test="hello";
+
+    function getData(){
+        console.log('ello');
+        $scope.test="JO";
+
+        /*$http({
+          method: 'GET',
+          url: '/get_json_test'
+        }).then(function successCallback(response) {
+             $scope.test=response
+          }, function errorCallback(response) {
+            $scope.test='error'
+          });*/
+          console.log(root + "get_json_test");
+          $http.get(root + "get_json_test")
+            .then(function(response) {
+            $scope.test = response.data;
+            });
+
+        //$scope.test="do not printt";
     }
 
-    $scope.test="hello"
-
     $scope.submit = function(){
-    	
-    	$scope.test="submitted"
+        
+        $scope.test="SSSSSSSubmitted";
+        getData();
         console.log($scope.test);
     }
 
-    
 }]);
