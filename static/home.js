@@ -29,6 +29,8 @@ function takeShot() {
 
     document.getElementById("shots").innerHTML = shots;
     document.getElementById("BAC").innerHTML = bac.toString() + "%";
+    updateNextDrinkTime();
+
 };
 
 function graphBAC(){
@@ -36,6 +38,59 @@ function graphBAC(){
     rangeValue = graphBAC / 0.3 * 100
     document.getElementById("myRange").value = rangeValue;
 }
+
+
+var countDownDate = new Date().getTime();
+
+function getNewDriveTime(mybac) {
+var time = ((mybac-0.08)/0.15) * 3600 * 1000;
+countDownDate = new Date().getTime()+ time;
+    if (countDownDate < new Date().getTime()) {
+        countDownDate = new Date().getTime();
+        return 0;
+    }
+    return time;
+}
+
+function updateNextDrinkTime() {
+
+var addTime1 = "One more drink adds ";
+var addTime2 = " minute(s) to the timer.";
+var futureBAC = calculateBAC(0.6*(shots+1), isMale);
+var timeDiffMinutes = (getNewDriveTime(futureBAC) - getNewDriveTime(bac))/(1000*60);
+var str = addTime1 + Math.ceil(timeDiffMinutes, 1).toString() + addTime2;
+document.getElementById("asdf").innerHTML = str;
+}
+
+// Set the date we're counting down to
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+    
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Output the result in an element with id="demo"
+    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+
+    // If the count down is over, write some text 
+    if (distance < 0) {
+        //clearInterval(x);
+        document.getElementById("demo").innerHTML = "You're sober!";
+        document.getElementById("demo").style.backgroundColor = "LightGreen";
+    }
+}, 1000);
+
 
 function calculateBAC(ouncesAlcy, isMale){
     var timeDiff = (new Date().getTime() - firstShotTime) / 3600 / 1000

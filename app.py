@@ -12,7 +12,7 @@ def submit():
 
 @app.route('/home')
 def home():
-    return render_template('template.html')
+    return render_template('home.html')
     
 #grab alcohol data
 @app.route('/')

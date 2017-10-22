@@ -2,6 +2,13 @@
 <html ng-app="myApp" >
 <head>
   <title>Gene and Drive</title>
+  <style>
+          p {
+            text-align: center;
+            font-size: 60px;
+            background-color: LightCoral;
+          }
+  </style>
   <link rel="stylesheet" href="../static/rangeslide.css">
   <script src="../static/rangeslide.js"></script>
   <link rel="stylesheet" href="../static/home.css">
@@ -54,7 +61,11 @@
           </div>
         </center>
 </div>
-<div id="driving" class="tabcontent">hello</div>
+<div id="driving" class="tabcontent">
+     <h1 style="text-align:center;background-color:DarkTurquoise;">Timing Until Driving</h1>
+     <p id="demo"></p>
+     <h2 id="asdf"></h2>
+</div>
 
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
   <div class="container-fluid">
@@ -85,6 +96,7 @@ function openCity(evt, cityName) {
     evt.currentTarget.className += " active";
 }
 </script>
+
 
 </body>
 </html>
