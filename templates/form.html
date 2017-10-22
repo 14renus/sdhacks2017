@@ -12,20 +12,27 @@
   <form id="contact" name="form">
     <h3>Basic Information</h3>
     <fieldset>
-      <h4> Height: </h4> 
-      <input placeholder="ft"  type="number" tabindex="1" required autofocus ng-model="patient.height.ft">
-      <input placeholder="in" type="number" tabindex="1" required autofocus ng-model="patient.height.in">
+      <h4>Weight: </h4><input placeholder="lbs" type="number" tabindex="2" required ng-model="patient.weight"/> 
     </fieldset>
     <fieldset>
-      <h4>Weight: </h4><input placeholder="Your Weight" type="number" tabindex="2" required ng-model="patient.weight"> 
-    </fieldset>
-    <fieldset>
-      <h4> Gender: </h4>
+      <h4> Biological Gender: </h4>
                  <label class="radio-inline"><input name="radio-choice" type="radio" ng-model="patient.gender" value="male" required>Male</label>
                   <label class="radio-inline"><input name="radio-choice" type="radio" ng-model="patient.gender" value="female" required>Female</label>      
     </fieldset>
     <fieldset>
-      <button type="submit" ng-click="submit()">Submit</button>
+      <h4>Alcohol Resistance: </h4>
+      {% if not reports %}
+      <a href="{{ authorize_url }}" class="btn btn-primary-outline">Please click to connect with genome</a>
+      {% else %}
+      <input disabled placeholder="{{ reports[0].summary.text }}" type="text" required ng-model="patient.resistance"/> 
+      {% endif %}
+    </fieldset>
+    <fieldset>
+      {% if not reports %}
+      <button type="submit" ng-click="submit(8)">Submit</button>
+      {% else %}
+      <button type="submit" ng-click="submit({{ reports[0].summary.score }})">Submit</button>
+      {% endif %}
     </fieldset>
     <!-- <p class="copyright">Designed by <a href="https://colorlib.com" target="_blank" title="Colorlib">Colorlib</a></p> -->
   </form>

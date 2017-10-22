@@ -4,7 +4,7 @@ import requests
 from flask import Flask, render_template, request, redirect, session, url_for, jsonify
 app = Flask(__name__)
 
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
 #test demo with eye color
 @app.route('/ADB')
 def ADB():
@@ -17,17 +17,18 @@ def ADB():
     return report.summary['text']
 
 #grab alcohol data
-@app.route('/reportADB')
+@app.route('/form')
 def reportADB():
     authorize_url = genomelink.OAuth.authorize_url(scope=['report:alcohol-drinking-behavior'])
-    #return authorize_url
-    #return session['oauth_token']
+
+    # Fetching a protected resource using an OAuth2 token if exists.
+    reports = []
     if session.get('oauth_token'):
-        report = genomelink.Report.fetch(name='alcohol-drinking-behavior',
-                                     population='european',
-                                     token=session['oauth_token']
-                                     )
-    return render_template('form.html', authorize_url=authorize_url, report=report)
+        reports.append(genomelink.Report.fetch(name='alcohol-drinking-behavior', population='european', token=session['oauth_token']))
+
+    return render_template('form.html', authorize_url=authorize_url, reports=reports)
+
+    #return report
     #if report.summary['text'] == None:
     #return "Field does not exist"
     #return report.summary['text']
@@ -63,9 +64,9 @@ def get_json():
     return jsonify(firstname='renu',
                    lastname='singh')
 
-@app.route('/form')
-def form():
-    return render_template('form.html')
+#@app.route('/form')
+#def form():
+    #return render_template('form.html')
 
 @app.route('/')
 def index():

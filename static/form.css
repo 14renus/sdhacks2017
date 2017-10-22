@@ -81,7 +81,7 @@ fieldset {
 
 #contact input[type="number"],
 #contact textarea {
-  width: auto;
+  width: 100%;
   border: 1px solid #ccc;
   background: #FFF;
   margin: 0 0 5px;

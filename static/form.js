@@ -1,8 +1,8 @@
 var app = angular.module("myApp", []);
 
 app.config(function($interpolateProvider) {
-    $interpolateProvider.startSymbol('{%');
-    $interpolateProvider.endSymbol('%}');
+    $interpolateProvider.startSymbol('[%');
+    $interpolateProvider.endSymbol('%]');
 });
 
 app.controller("patientCtrl", ['$scope', '$http', function($scope, $http) {
@@ -10,7 +10,8 @@ app.controller("patientCtrl", ['$scope', '$http', function($scope, $http) {
         height: {ft:"", in:""},
         weight: "",
         gender: "",
-        shot_count: 0
+        shot_count: 0,
+        score: 8
     };
 
     var root = "http://127.0.0.1:5000/";
@@ -18,8 +19,6 @@ app.controller("patientCtrl", ['$scope', '$http', function($scope, $http) {
 
     function getData() {
         console.log('ello');
-        $scope.test="JO";
-
         /*$http({
           method: 'GET',
           url: '/get_json_test'
@@ -38,11 +37,19 @@ app.controller("patientCtrl", ['$scope', '$http', function($scope, $http) {
         //$scope.test="do not printt";
     }
 
-    $scope.submit = function(){
-        
-        $scope.test="SSSSSSSubmitted";
-        getData();
-        console.log($scope.test);
+    $scope.submit = function(score){
+        console.log('submit1');
+        if($scope.patient.weight=="")
+            return;
+        if($scope.patient.gender=="")
+            return;
+        if(score==8)
+            return;
+        $scope.patient.score=score;
+        console.log('submit2');
+        console.log($scope.patient.weight);
+        console.log($scope.patient.gender);
+        console.log($scope.patient.score);
     }
 
     $scope.addShot = function() {
