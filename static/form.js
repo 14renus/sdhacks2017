@@ -12,7 +12,7 @@ app.controller("patientCtrl", ['$scope', '$http', function($scope, $http) {
         gender: ""
     };
 
-    var root = "http://127.0.0.1:5000/";
+    var root = "127.0.0.1:5000/";
     $scope.test="hello";
 
     function getData(){
@@ -30,7 +30,8 @@ app.controller("patientCtrl", ['$scope', '$http', function($scope, $http) {
           console.log(root + "get_json_test");
           $http.get(root + "get_json_test")
             .then(function(response) {
-            $scope.test = response.data;
+                $scope.test = response.firstname;
+                $scope.test = 'ugh';
             });
 
         //$scope.test="do not printt";
