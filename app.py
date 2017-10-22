@@ -18,9 +18,11 @@ def callback():
 @app.route('/reportADB')
 def reportADB():
     authorize_url = genomelink.OAuth.authorize_url(scope=['report:alcohol-drinking-behavior'])
-    report = genomelink.Report.fetch(name='alcohol-drinking-behavior',
+    if session.get('oauth_token'):
+        report = genomelink.Report.fetch(name='alcohol-drinking-behavior',
                                      population='european',
-                                     token='GENOMELINKTEST')
+                                     token=session['oauth_token']
+                                     )
 
     if report.summary['text'] == None:
         return "Field does not exist"

@@ -9,13 +9,14 @@ app.controller("patientCtrl", ['$scope', '$http', function($scope, $http) {
     $scope.patient = {
         height: {ft:"", in:""},
         weight: "",
-        gender: ""
+        gender: "",
+        shot_count: 0
     };
 
-    var root = "127.0.0.1:5000/";
+    var root = "http://127.0.0.1:5000/";
     $scope.test="hello";
 
-    function getData(){
+    function getData() {
         console.log('ello');
         $scope.test="JO";
 
@@ -30,8 +31,8 @@ app.controller("patientCtrl", ['$scope', '$http', function($scope, $http) {
           console.log(root + "get_json_test");
           $http.get(root + "get_json_test")
             .then(function(response) {
-                $scope.test = response.firstname;
-                $scope.test = 'ugh';
+                console.log('zzz');
+                console.log(response);
             });
 
         //$scope.test="do not printt";
@@ -42,6 +43,10 @@ app.controller("patientCtrl", ['$scope', '$http', function($scope, $http) {
         $scope.test="SSSSSSSubmitted";
         getData();
         console.log($scope.test);
+    }
+
+    $scope.addShot = function() {
+        $scope.patient.shot_count += 1;
     }
 
 }]);
