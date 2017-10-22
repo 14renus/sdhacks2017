@@ -9,7 +9,7 @@
 
 
 <div class="container" ng-controller="patientCtrl">  
-  <form id="contact" name="form">
+  <form id="contact" name="form" action="/submit" method=post>
     <h3>Basic Information</h3>
     <fieldset>
       <h4>Weight: </h4><input placeholder="lbs" type="number" tabindex="2" required ng-model="patient.weight"/> 
@@ -31,10 +31,10 @@
       {% if not reports %}
       <button type="submit" ng-click="submit(8)">Submit</button>
       {% else %}
-      <button type="submit" ng-click="submit({{ reports[0].summary.score }})">Submit</button>
+      <button type="submit" ng-mouseover="submit({{ reports[0].summary.score }})">Submit</button>
       {% endif %}
     </fieldset>
-    <!-- <p class="copyright">Designed by <a href="https://colorlib.com" target="_blank" title="Colorlib">Colorlib</a></p> -->
+    <!--action="{{ url_for('home') }}"   <p class="copyright">Designed by <a href="https://colorlib.com" target="_blank" title="Colorlib">Colorlib</a></p> -->
   </form>
 </div>
 

@@ -5,19 +5,17 @@ from flask import Flask, render_template, request, redirect, session, url_for, j
 app = Flask(__name__)
 
 
-#test demo with eye color
-@app.route('/ADB')
-def ADB():
-    feature = 'alcohol-drinking-behavior'
-    #feature = 'eye-color'
-    report = genomelink.Report.fetch(name=feature,
-                                     population='european',
-                                     token='GENOMELINKTEST')
+#direct to Bryan's home html
+@app.route('/submit', methods=['POST'])
+def submit():
+    return redirect(url_for('home'))
 
-    return report.summary['text']
-
+@app.route('/home')
+def home():
+    return render_template('template.html')
+    
 #grab alcohol data
-@app.route('/form')
+@app.route('/')
 def reportADB():
     authorize_url = genomelink.OAuth.authorize_url(scope=['report:alcohol-drinking-behavior'])
 
@@ -44,33 +42,12 @@ def callback():
     session['oauth_token'] = token
     return redirect(url_for('reportADB'))
 
-@app.route('/testADB')
-def help():
-    token = 'GENOMELINKTEST'
-    headers = {'Authorization': 'Bearer {}'.format(token)}
-
-    phenotype = 'eye-color'
-    population = 'european'
-    report_url = 'https://genomicexplorer.io/v1/reports/{}?population={}'.format(phenotype, population)
-    response = requests.get(report_url, headers=headers)
-    data = response.json()
-    print(json.dumps(data))
-
-
 # test sending to js app
 # https://stackoverflow.com/questions/46204047/calling-a-javascript-function-from-flask-python
 @app.route('/get_json_test')
 def get_json():
     return jsonify(firstname='renu',
                    lastname='singh')
-
-#@app.route('/form')
-#def form():
-    #return render_template('form.html')
-
-@app.route('/')
-def index():
-    return render_template('template.html')
 
 
 if __name__ == '__main__':
