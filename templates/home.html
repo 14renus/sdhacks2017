@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="myApp" >
+<head>
+  <title>Gene and Drive</title>
+  <link rel="stylesheet" href="../static/rangeslide.css">
+  <script src="../static/rangeslide.js"></script>
+  <link rel="stylesheet" href="../static/home.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <style>
+    body{
+      background-image: url("fck.jpg");
+      background-position: center;
+      background-size: cover;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+<div id="home" class="tabcontent">
+        <center><h1 id="header">State of Being</h1></center>
+        <center>
+        <div id="slidecontainer">
+          <input type="range" min="1" max="100" value="0" class="slider" id="myRange">
+        </div>
+        </center>
+
+        <div class="container col-md-12">
+          <div class="col-md-12 col-md-offset-1">
+            <span class="label label-success">Sober</span>
+            <span class="label label-success", id="tipsy">Tipsy</span>
+            <span class="label label-warning", id="drunk">Drunk</span>
+            <span class="label label-warning", id="throwUp">Throw Up</span>
+            <span class="label label-danger", id="comatose">Comatose</span>
+          </div>
+        </div>
+
+        <center>
+        <div class="col-md-2 col-md-offset-2">
+          <h2 id="shotOutput">Shots: <a id="shots">0</a></h2>
+        </div>
+        <div class="col-md-2 col-md-offset-1">
+          <button class="button", onClick="takeShot()">1 More Shot!</button>
+        </div>
+        <div class="col-md-2 col-md-offset-1">
+          <h2 id="bacOutput">BAC: <a id="BAC">0%</a></h2>
+        </div>
+        </center>
+
+        <center>
+          <div class="col-md-12">
+            <h3>Genetic Tolerance</h3>
+          	<div id="rangeslide2" ></div>
+          </div>
+        </center>
+</div>
+<div id="driving" class="tabcontent">hello</div>
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="col-md-4 col-md-offset-5">
+      <ul class="nav navbar-nav tab">>
+        <li class="tablinks active" onclick="openCity(event, 'home')" id="home"><a href="#home">Home</a></li>
+        <li class="tablinks" onclick="openCity(event, 'driving')" id="driving"><a href="#driving">Driving</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script src="../static/home.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+
+</body>
+</html>
