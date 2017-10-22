@@ -29,7 +29,7 @@ app.controller("patientCtrl", ['$scope', '$http', function($scope, $http) {
             $scope.test='error'
           });*/
           console.log(root + "get_json_test");
-          $http.get(root + "get_json_test")
+          $http.get(root + "reportADB")
             .then(function(response) {
                 console.log('zzz');
                 console.log(response);
